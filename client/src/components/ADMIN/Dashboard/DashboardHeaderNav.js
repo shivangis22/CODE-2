@@ -144,6 +144,18 @@ function Header(props) {
             </NavItem>
             <NavItem className="pr-3">
               <Link
+                to="/admin/career"
+                style={{
+                  color: "#111",
+                  fontWeight: 600,
+                  textDecoration: "none",
+                }}
+              >
+                Career
+              </Link>
+            </NavItem>
+            <NavItem className="pr-3">
+              <Link
                 to="/logout"
                 style={{
                   color: "#111",
