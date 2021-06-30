@@ -4,7 +4,6 @@ import careerRoutes from "./careerRoutes";
 import DateFnsUtils from "@date-io/date-fns";
 import {
   MuiPickersUtilsProvider,
-  KeyboardTimePicker,
   KeyboardDatePicker,
 } from "@material-ui/pickers";
 import Tags from "@yaireo/tagify/dist/react.tagify";
@@ -24,32 +23,29 @@ import EditorComponent from "../../Editor/Editor";
 const JobFormView = React.forwardRef(
   (
     {
-      eventName,
-      setEventName,
-      eventType,
-      setEventType,
-      entryFee,
-      setEntryFee,
-      startsOn,
-      setStartsOn,
-      endsOn,
-      setEndsOn,
+      jobTitle,
+      setJobTitle,
+      department,
+      setDepartment,
+      workType,
+      setWorkType,
+      remote,
+      setRemote,
+      applyBy,
+      setApplyBy,
       duration,
       setDuration,
-      venue,
-      setVenue,
-      description,
-      setDescription,
+      stipend,
+      setStipend,
+      totalOpenings,
+      setTotalOpenings,
       handleTagChange,
       handleSubmit,
       tags,
-      bannerUrl,
-      cardImgUrl,
       editorState,
       setEditorState,
       ...props
     },
-    { bannerImgRef, cardImgRef }
   ) => {
     return (
       <DashboardLayout routes={careerRoutes}>
@@ -64,14 +60,14 @@ const JobFormView = React.forwardRef(
               <Row style={{ width: "100%", marginLeft: 0 }}>
                 <Col md="4">
                   <FormGroup>
-                    <label htmlFor="eventName" className="fontType">
+                    <label htmlFor="jobTitle" className="fontType">
                       Job Title
                     </label>
                     <input
                       className="form-control"
                       type="text"
-                      value={eventName}
-                      onChange={(e) => setEventName(e.target.value)}
+                      value={jobTitle}
+                      onChange={(e) => setJobTitle(e.target.value)}
                       placeholder="Job Title"
                       id="jobTitle"
                     />
@@ -79,12 +75,14 @@ const JobFormView = React.forwardRef(
                 </Col>
                 <Col md="4">
                   <FormGroup>
-                    <label htmlFor="eventType" className="fontType">
+                    <label htmlFor="department" className="fontType">
                       Department
                     </label>
                     <select
                       className="form-control"
                       type="text"
+                      value={department}
+                      onChange={(e)=>setDepartment(e.target.value)}
                       id="department">
                       <option value="">Department</option>
                       <option value="Android">Android</option>
@@ -99,12 +97,14 @@ const JobFormView = React.forwardRef(
 
                 <Col md="4">
                   <FormGroup>
-                    <label htmlFor="entryFee" className="fontType">
+                    <label htmlFor="workType" className="fontType">
                       Work Type
                     </label>
                     <select
                       className="form-control"
                       type="text"
+                      value={workType}
+                      onChange={(e)=>setWorkType(e.target.value)}
                       id="workType">
                       <option value="">Work Type</option>
                       <option value="Internship">Internship</option>
@@ -120,13 +120,16 @@ const JobFormView = React.forwardRef(
 
                 <Col md="4">
                   <FormGroup>
-                    <label htmlFor="entryFee" className="fontType">
+                    <label htmlFor="remote" className="fontType">
                       Remote/Office
                     </label>
                     <select
                       className="form-control"
                       type="text"
+                      value={remote}
+                      onChange={(e)=>setRemote(e.target.value)}
                       id="remote">
+                      <option value="">Work Place</option>
                       <option value="Office">Office</option>
                       <option value="Remote">Remote</option>                     
                     </select>
@@ -135,13 +138,15 @@ const JobFormView = React.forwardRef(
 
                   <Col md="4">
                     <FormGroup>
-                      <label htmlFor="startingDate" className="fontType">
+                      <label htmlFor="applyBy" className="fontType">
                         Apply By
                       </label>
                       <KeyboardDatePicker
                         margin="0"
                         id="applyBy"
                         label=""
+                        value={applyBy}
+                        onChange={(date)=>setApplyBy(date)}
                         format="dd/MM/yyyy"
                         className="form-control"
                       />
@@ -158,6 +163,8 @@ const JobFormView = React.forwardRef(
                         type="text"
                         placeholder="Duration"
                         id="duration"
+                        value={duration}
+                        onChange={(e)=>setDuration(e.target.value)}
                       />
                     </FormGroup>
                   </Col>
@@ -167,7 +174,7 @@ const JobFormView = React.forwardRef(
                 <Row style={{ width: "100%", marginLeft: 0 }}>
                 <Col md="4">
                     <FormGroup>
-                      <label htmlFor="duration" className="fontType">
+                      <label htmlFor="stipend" className="fontType">
                         Stipend
                       </label>
                       <input
@@ -175,13 +182,15 @@ const JobFormView = React.forwardRef(
                         type="text"
                         placeholder="Stipend"
                         id="stipend"
+                        value={stipend}
+                        onChange={(e)=>setStipend(e.target.value)}
                       />
                     </FormGroup>
                 </Col>
 
                 <Col md="4">
                     <FormGroup>
-                      <label htmlFor="duration" className="fontType">
+                      <label htmlFor="totalOpenings" className="fontType">
                         Total Openings
                       </label>
                       <input
@@ -189,13 +198,15 @@ const JobFormView = React.forwardRef(
                         type="text"
                         placeholder="Total Openings"
                         id="totalOpenings"
+                        value={totalOpenings}
+                        onChange={(e)=>setTotalOpenings(e.target.value)}
                       />
                     </FormGroup>
                   </Col>
 
                   <Col md="4">
                   <FormGroup>
-                    <label htmlFor="tags" className="fontType">
+                    <label htmlFor="skills" className="fontType">
                       Skills
                     </label>
                     <Tags
@@ -208,13 +219,12 @@ const JobFormView = React.forwardRef(
                   </Col>
                 </Row>
               </MuiPickersUtilsProvider>
-
               
               <Row style={{ width: "100%", marginLeft: 0 }}>
                 <Col md="12">
                   <FormGroup>
-                    <label htmlFor="details" className="fontType">
-                      Details
+                    <label htmlFor="jobDescription" className="fontType">
+                      Job Description
                     </label>
                     <EditorComponent
                       editorState={editorState}
